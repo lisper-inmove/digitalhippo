@@ -14,6 +14,11 @@ const nextConfig = {
         pathname: "**",
         protocol: "https",
       },
+      {
+        hostname: "digitalhippo-production-1fa3.up.railway.app",
+        pathname: "**",
+        protocol: "https",
+      },
     ],
   },
 };
