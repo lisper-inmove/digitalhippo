@@ -80,7 +80,6 @@ const Page = () => {
                     (c) => c.value === product.category
                   )?.label;
                   const { image } = product.images[0];
-                  console.log(image);
                   return (
                     <li key={product.id} className="flex py-6 sm:py-10">
                       <div className="flex-shrink-0">

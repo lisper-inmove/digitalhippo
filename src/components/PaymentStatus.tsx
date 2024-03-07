@@ -1,5 +1,6 @@
 "use client";
 
+import { useCart } from "@/hooks/use-cart";
 import { trpc } from "@/trpc/client";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -12,19 +13,25 @@ interface PaymentStatusProps {
 
 const PaymentStatus = ({ orderEmail, orderId, isPaid }: PaymentStatusProps) => {
   const router = useRouter();
+  const { clearCart } = useCart();
+  let first = false;
   const { data } = trpc.payment.pollOrderStatus.useQuery(
     {
       orderId,
     },
     {
-      enabled: isPaid == false,
+      enabled: isPaid === false || !first,
       refetchInterval: (data) => {
+        first = true;
         return data?.isPaid ? false : 1000;
       },
     }
   );
   useEffect(() => {
-    if (data?.isPaid) router.refresh();
+    if (data?.isPaid || isPaid) {
+      clearCart();
+      router.refresh();
+    }
   }, [data?.isPaid, router]);
   return (
     <div className="mt-16 grid grid-cols-2 gap-x-4 text-sm text-gray-600">

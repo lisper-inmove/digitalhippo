@@ -10,6 +10,7 @@ export const paymentRouter = router({
     .input(z.object({ orderId: z.string() }))
     .query(async ({ input }) => {
       const { orderId } = input;
+      console.log(">>>>>>>>>>>>", orderId);
       const payload = await getPayloadClient();
       const { docs: orders } = await payload.find({
         collection: "orders",
