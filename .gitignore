@@ -38,3 +38,5 @@ next-env.d.ts
 dist
 
 src/media
+nohup.out
+.env

@@ -6,7 +6,7 @@ build:
 start:
 	yarn bgstart
 
-bd: build # build docker
+bd:
 	sudo docker build -t mh.com:8890/test/digitalhippo:v1.0 .
 	sudo docker push mh.com:8890/test/digitalhippo:v1.0
 
