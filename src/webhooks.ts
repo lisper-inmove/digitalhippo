@@ -23,6 +23,7 @@ export const stripeWebhookHandler = async (
   const webhookRequest = req as any as WebhookRequest;
   const body = webhookRequest.rawBody;
   const signature = req.headers["stripe-signature"] || "";
+  const payload = await getPayloadClient();
 
   let event;
   try {
@@ -32,6 +33,7 @@ export const stripeWebhookHandler = async (
       process.env.STRIPE_WEBHOOK_SECRET || ""
     );
   } catch (err) {
+    payload.logger.info(err);
     return res
       .status(400)
       .send(
@@ -103,7 +105,9 @@ export const stripeWebhookHandler = async (
       transporter.sendMail(mailOptions, (err, info) => {
         console.log(err, info);
       });
-    } catch (error) { }
+    } catch (error) {
+      console.log("Fuck you!");
+    }
   }
 
   return res.status(200).send();

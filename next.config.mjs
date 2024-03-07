@@ -6,7 +6,7 @@ const nextConfig = {
       {
         hostname: "192.168.3.124",
         pathname: "**",
-        port: "3000",
+        port: "9600",
         protocol: "http",
       },
       {
@@ -15,7 +15,7 @@ const nextConfig = {
         protocol: "https",
       },
       {
-        hostname: "digitalhippo-production-1fa3.up.railway.app",
+        hostname: "digitalhippo.inmove.top",
         pathname: "**",
         protocol: "https",
       },
